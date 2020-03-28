@@ -1,39 +1,212 @@
 <template>
   <div class="prc">
-
     <div class="prc__cover">
-      <img class="prc__img" />
-      <div class="prc__favorite">
-        <!-- Heart Icon -->
-      </div>
+      <img class="prc__heart" src="@/assets/icons/heart-empty.svg" />
+      <!-- <img class="prc__heart" src="@/assets/icons/heart-full.svg"/> -->
       <div class="prc__tag">
-        <!-- Trophy Icon --> <!-- Premium Recipe -->
+        <img class="prc__tagIcon" src="@/assets/icons/trophy.svg" />
+        Premium Recipe
       </div>
     </div>
-
     <div class="prc__info">
       <div class="prc__header">
-        <!-- Low Carb Thai Chicken Curry With Coconut Cauliflower Rice -->
+        Low Carb Thai Chicken Curry With Coconut Cauliflower Rice There are more things to come, don't you worry!
       </div>
-
       <div class="prc__ratings">
-        <!-- 5 star icons --> <!-- number of ratings (200 ratings) -->
+        <img class="prc__star" src="@/assets/icons/star-full.svg" />
+        <img class="prc__star" src="@/assets/icons/star-full.svg" />
+        <img class="prc__star" src="@/assets/icons/star-full.svg" />
+        <img class="prc__star" src="@/assets/icons/star-half.svg" />
+        <img class="prc__star" src="@/assets/icons/star-empty.svg" />
+        <div class="ratingsLink">
+          200 ratings
+        </div>
       </div>
-
-      <div class="prc__duration">
-        <!-- timer icon --> <!-- duration (24 minutes) -->
-      </div>
-
-      <div class="prc__burn">
-        <!-- burn icon --> <!-- num calories burned (489 Calories) -->
-      </div>
-
-      <div class="prc__macros">
-        <!-- red icon --> <!-- carbs (20g) -->
-        <!-- blue icon --> <!-- protein (16g) -->
-        <!-- yellow icon --> <!-- yellow (6g) -->
+      <div class="flex flex-justify-between">
+        <div class="flex">
+          <div class="prc__duration">
+            <img class="prc__durationIcon" src="@/assets/icons/clock.svg" />
+            24 min
+          </div>
+          <div class="prc__calories">
+            <img class="prc__durationIcon" src="@/assets/icons/cals.svg" />
+            489 Calories
+          </div>
+        </div>
+        <div class="prc__macros">
+          <div class="macro macro--carb"></div>
+          <div class="amount">20g</div>
+          <div class="macro macro--protein"></div>
+          <div class="amount">16g</div>
+          <div class="macro macro--fat"></div>
+          <div class="amount">6g</div>
+        </div>
       </div>
     </div>
-
   </div>
 </template>
+
+<style scoped>
+/* container */
+.prc {
+  position: relative;
+  width: 343px;
+  height: 318px;
+  background-color: var(--white);
+  box-shadow: var(--shadow-000);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+/* section -- cover */
+.prc__cover {
+  position: absolute;
+  width: 100%;
+  height: 200px;
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0.0001) 0%,
+      rgba(22, 27, 35, 0.2) 70.94%,
+      rgba(26, 29, 34, 0.79) 106.25%
+    ),
+    url("~@/assets/recipe-cover.png");
+  background-size: cover;
+  transition: opacity 0.3s;
+}
+
+.prc:hover .prc__cover {
+  opacity: 0.8;
+}
+
+.prc__heart {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.prc__tag {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+  width: 117px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: var(--font-sm);
+  letter-spacing: -0.2px;
+  color: var(--white);
+}
+
+.prc__tag .prc__tagIcon {
+  margin-right: 4px;
+}
+
+/* section -- detailed information */
+.prc__info {
+  width: 310px;
+  height: 94px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: var(--white);
+  padding: 8px 16px 16px 16px;
+}
+
+.prc__header {
+  display: block;
+  font-weight: bold;
+  font-size: var(--font-lg);
+  line-height: 20px;
+  color: var(--grey-200);
+  text-align: left;
+  margin-bottom: 16px;
+  padding-right: 10px;
+
+  /* handle overflow */
+  max-height: 40px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+/* star ratings */
+.prc__ratings {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-md);
+  margin-bottom: 8px;
+}
+
+.prc__ratings .prc__star {
+  margin-right: 1.69px;
+}
+
+.prc__ratings .prc__star:nth-child(5) {
+  margin-right: 8px;
+}
+
+.ratingsLink {
+  font-weight: 500;
+  font-size: var(--font-md);
+  color: var(--green-000);
+}
+
+/* duration, calories, macros breakdown */
+.prc__duration,
+.prc__calories {
+  display: flex;
+  align-items: center;
+  font-size: var(--font-sm);
+  color: var(--grey-100);
+}
+
+.prc__duration .prc__durationIcon,
+.prc__calories .prc__durationIcon {
+  color: var(--grey-000);
+  margin-right: 8px;
+}
+
+.prc__duration {
+  margin-right: 16px;
+}
+
+.prc__macros {
+  display: flex;
+  align-items: center;
+}
+
+.prc__macros .macro {
+  margin-right: 4px;
+}
+
+.prc__macros .amount {
+  margin-right: 8px;
+  font-size: var(--font-sm);
+  color: var(--grey-000);
+}
+
+.macro {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+}
+
+.macro.macro--carb {
+  background-color: var(--red-000);
+}
+
+.macro.macro--protein {
+  background-color: var(--blue-000);
+}
+
+.macro.macro--fat {
+  background-color: var(--orange-000);
+}
+</style>

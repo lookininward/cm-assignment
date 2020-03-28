@@ -9,8 +9,7 @@ describe('PremiumRecipeCard.vue', () => {
 
     // Cover
     expect(wrapper.find('.prc__cover').exists()).toBe(true)
-    expect(wrapper.find('.prc__img').exists()).toBe(true)
-    expect(wrapper.find('.prc__favorite').exists()).toBe(true)
+    expect(wrapper.find('.prc__heart').exists()).toBe(true)
     expect(wrapper.find('.prc__tag').exists()).toBe(true)
 
     // Info
@@ -18,7 +17,7 @@ describe('PremiumRecipeCard.vue', () => {
     expect(wrapper.find('.prc__header').exists()).toBe(true)
     expect(wrapper.find('.prc__ratings').exists()).toBe(true)
     expect(wrapper.find('.prc__duration').exists()).toBe(true)
-    expect(wrapper.find('.prc__burn').exists()).toBe(true)
+    expect(wrapper.find('.prc__calories').exists()).toBe(true)
     expect(wrapper.find('.prc__macros').exists()).toBe(true)
   })
 })

@@ -1,0 +1,28 @@
+<svg
+  width="12"
+  height="12"
+  viewBox="0 0 12 12"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    opacity="0.5"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    d="
+      M5.99956
+      9.64421L9.66001
+      12L8.68863
+      7.56L11.9226
+      4.57263L7.66394
+      4.18737L5.99956
+      0L4.33518
+      4.18737L0.0764923
+      4.57263L3.31049
+      7.56L2.3391
+      12L5.99956
+      9.64421Z
+    "
+    fill="#AAAEB3"
+  />
+</svg>

@@ -26,12 +26,42 @@ export default {
 </script>
 
 <style>
+/* Variables */
+:root {
+  --font-standard: "proxima-nova", Helvetica, Arial, sans-serif;
+  --font-sm: 12px;
+  --font-md: 14px;
+  --font-lg: 18px;
+
+  --white: #ffffff;
+  --grey-000: #6f737a;
+  --grey-100: #393c40;
+  --grey-200: #0C0C0A;
+  --red-000: #f94642;
+  --blue-000: #3177bb;
+  --blue-100: #2c3e50;
+  --green-000: #1ca677;
+  --orange-000: #fda120;
+
+  --shadow-000: 0px 13px 35px rgba(0, 30, 47, 0.1);
+}
+
+/* Utility Classes */
+.flex {
+  display: flex;
+}
+
+.flex-justify-between {
+  justify-content: space-between;
+}
+
+/* App Container */
 #app {
-  font-family: "proxima-nova", Helvetica, Arial, sans-serif;
+  font-family: var(--font-standard);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: var(--blue-100);
   margin-top: 60px;
 }
 </style>
@@ -51,10 +81,8 @@ export default {
   margin: auto;
 }
 
-/** Remove these styles when done */
 .premium-recipe-wrapper {
-  margin-top: 100px;
-  border: 2px dashed red;
-  padding: 16px;
+  display: flex;
+  justify-content: center;
 }
 </style>
