@@ -8,7 +8,11 @@
       <p>See the README file for assignment requirements.</p>
 
       <div class="premium-recipe-wrapper">
-        <PremiumRecipeCard :calories="1180" energy-units="kilojoules" />
+        <PremiumRecipeCard
+          :calories="1180"
+          energy-units="kilojoules"
+          :ratings="[3.5, 5, 0.5, 2.5, 0, 4, 5, 5, 5, 4, 5, 3.5, 5]"
+        />
       </div>
     </div>
   </div>

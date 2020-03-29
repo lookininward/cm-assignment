@@ -13,13 +13,19 @@
         Low Carb Thai Chicken Curry With Coconut Cauliflower Rice There are more things to come, don't you worry!
       </div>
       <div class="prc__ratings">
-        <img class="prc__star" src="@/assets/icons/star-full.svg" />
-        <img class="prc__star" src="@/assets/icons/star-full.svg" />
-        <img class="prc__star" src="@/assets/icons/star-full.svg" />
-        <img class="prc__star" src="@/assets/icons/star-half.svg" />
-        <img class="prc__star" src="@/assets/icons/star-empty.svg" />
+        <template v-for="(star, idx) in stars">
+          <img
+            class="prc__star"
+            :key="idx"
+            :src="
+              star === 'f' ? require('@/assets/icons/star-full.svg') :
+              star === 'h' ? require('@/assets/icons/star-half.svg') :
+                             require('@/assets/icons/star-empty.svg')
+            "
+          />
+        </template>
         <div class="ratingsLink">
-          200 ratings
+          {{ratings.length}} ratings
         </div>
       </div>
       <div class="flex flex-justify-between">
@@ -58,10 +64,17 @@
       energyUnits: {
         type: String,
         default: 'calories',
-        validator: prop => [
-          'calories',
-          'kilojoules'
-        ].includes(prop)
+        validator: prop => ['calories', 'kilojoules'].includes(prop)
+      },
+
+      ratings: {
+        type: Array,
+        required: true,
+        validator: prop => {
+          return !prop.map(rating =>
+            rating >=0 && rating <=5 && rating % 0.5 == 0
+          ).some(rating => !rating)
+        }
       }
     },
     computed: {
@@ -69,6 +82,25 @@
         return this.energyUnits === 'calories' ?
           `${this.formatNumber(Math.round(this.calories))} Calories` :
           `${this.formatNumber(Math.round(this.calories * 4.184))} Kilojoules`
+      },
+
+      stars() {
+        const rating = this.getAverage(this.ratings).toString().split('.')
+        let stars = []
+
+        for (let i = 0; i < parseInt(rating[0]); i++) {
+          stars.push('f')
+        }
+
+        if (rating[1]) {
+          stars.push('h')
+        }
+
+        while (stars.length < 5) {
+          stars.push('e')
+        }
+
+        return stars
       }
     },
     methods: {
@@ -76,6 +108,9 @@
         let parts = number.toString().split(".")
         parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
         return parts.join(".")
+      },
+      getAverage(ratings) {
+        return ratings.reduce((a,b) => a + b, 0) / ratings.length
       }
     }
   }
