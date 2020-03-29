@@ -9,6 +9,7 @@
 
       <div class="premium-recipe-wrapper">
         <PremiumRecipeCard
+          :isFavorite="true"
           :calories="1180"
           energy-units="kilojoules"
           :ratings="[3.5, 5, 0.5, 2.5, 0, 4, 5, 5, 5, 4, 5, 3.5, 5]"

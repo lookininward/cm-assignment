@@ -23,7 +23,28 @@ describe('PremiumRecipeCard.vue', () => {
     expect(wrapper.find('.prc__macros').exists()).toBe(true)
   })
 
-  describe('computes energy units in calories, kilojoules', () => {
+  describe('compute heart fill', () => {
+    const cases = [
+      [true, 'full'],
+      [false, 'empty']
+    ]
+    test.each(cases)(
+      "given %p, returns %p",
+      (isFavorite, expectedResult) => {
+        const wrapper = shallowMount(PremiumRecipeCard, {
+          propsData: {
+            calories: 500,
+            ratings: [5],
+            isFavorite
+          }
+        })
+        const heart = wrapper.find('[data-test-heart]')
+        expect(heart.attributes()['data-test-heart']).toBe(expectedResult)
+      }
+    );
+  })
+
+  describe('compute energy units in calories, kilojoules', () => {
     const cases = [
       [0, 'calories', '0 Calories'],
       [100, 'calories', '100 Calories'],
@@ -51,7 +72,7 @@ describe('PremiumRecipeCard.vue', () => {
     );
   })
 
-    describe('computes average rating from ratings', () => {
+  describe('compute average rating from ratings', () => {
     const cases = [
       [[0], 0],
       [[0, 0.5], 0.25],
@@ -82,7 +103,7 @@ describe('PremiumRecipeCard.vue', () => {
     );
   })
 
-  describe('computes stars from ratings', () => {
+  describe('compute stars from ratings', () => {
     const cases = [
       [[0],['e','e','e','e','e']],
       [[0.5],['h','e','e','e','e']],

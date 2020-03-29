@@ -1,8 +1,14 @@
 <template>
   <div class="prc">
     <div class="prc__cover">
-      <img class="prc__heart" src="@/assets/icons/heart-empty.svg" />
-      <!-- <img class="prc__heart" src="@/assets/icons/heart-full.svg"/> -->
+      <img
+      :data-test-heart="isFavorite ? 'full' : 'empty'"
+        class="prc__heart"
+        :src="
+          isFavorite ? require('@/assets/icons/heart-full.svg') :
+                       require('@/assets/icons/heart-empty.svg')
+        "
+      />
       <div class="prc__tag">
         <img class="prc__tagIcon" src="@/assets/icons/trophy.svg" />
         Premium Recipe
@@ -56,6 +62,12 @@
   export default {
     name: 'Description',
     props: {
+      isFavorite: {
+        type: Boolean,
+        required: false,
+        default: false,
+        validator: prop => typeof prop === 'boolean'
+      },
       calories: {
         type: Number,
         required: true,
