@@ -28,9 +28,9 @@
             <img class="prc__durationIcon" src="@/assets/icons/clock.svg" />
             24 min
           </div>
-          <div class="prc__calories">
-            <img class="prc__durationIcon" src="@/assets/icons/cals.svg" />
-            489 Calories
+          <div class="prc__energy">
+            <img class="prc__energyIcon" src="@/assets/icons/energy.svg" />
+            {{energy}}
           </div>
         </div>
         <div class="prc__macros">
@@ -45,6 +45,41 @@
     </div>
   </div>
 </template>
+
+<script>
+  export default {
+    name: 'Description',
+    props: {
+      calories: {
+        type: Number,
+        required: true,
+        validator: prop => prop >= 0
+      },
+      energyUnits: {
+        type: String,
+        default: 'calories',
+        validator: prop => [
+          'calories',
+          'kilojoules'
+        ].includes(prop)
+      }
+    },
+    computed: {
+      energy() {
+        return this.energyUnits === 'calories' ?
+          `${this.formatNumber(Math.round(this.calories))} Calories` :
+          `${this.formatNumber(Math.round(this.calories * 4.184))} Kilojoules`
+      }
+    },
+    methods: {
+      formatNumber(number) {
+        let parts = number.toString().split(".")
+        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+        return parts.join(".")
+      }
+    }
+  }
+</script>
 
 <style scoped>
 /* container */
@@ -158,9 +193,9 @@
   color: var(--green-000);
 }
 
-/* duration, calories, macros breakdown */
+/* duration, energy, macros breakdown */
 .prc__duration,
-.prc__calories {
+.prc__energy {
   display: flex;
   align-items: center;
   font-size: var(--font-sm);
@@ -168,7 +203,7 @@
 }
 
 .prc__duration .prc__durationIcon,
-.prc__calories .prc__durationIcon {
+.prc__energy .prc__energyIcon {
   color: var(--grey-000);
   margin-right: 8px;
 }

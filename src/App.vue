@@ -8,7 +8,7 @@
       <p>See the README file for assignment requirements.</p>
 
       <div class="premium-recipe-wrapper">
-        <PremiumRecipeCard />
+        <PremiumRecipeCard :calories="1180" energy-units="kilojoules" />
       </div>
     </div>
   </div>
@@ -36,7 +36,7 @@ export default {
   --white: #ffffff;
   --grey-000: #6f737a;
   --grey-100: #393c40;
-  --grey-200: #0C0C0A;
+  --grey-200: #0c0c0a;
   --red-000: #f94642;
   --blue-000: #3177bb;
   --blue-100: #2c3e50;
