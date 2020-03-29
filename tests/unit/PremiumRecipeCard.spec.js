@@ -23,6 +23,14 @@ describe('PremiumRecipeCard.vue', () => {
     expect(wrapper.find('.prc__macros').exists()).toBe(true)
   })
 
+  it('emit didClick event when component clicked', () => {
+    const wrapper = shallowMount(PremiumRecipeCard, {
+      propsData: { calories: 500, ratings: [5] }
+    })
+    wrapper.find('.prc').trigger('click')
+    expect(wrapper.emitted('didClick')).toHaveLength(1)
+  })
+
   describe('compute heart fill', () => {
     const cases = [
       [true, 'full'],

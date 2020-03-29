@@ -1,5 +1,5 @@
 <template>
-  <div class="prc">
+  <div class="prc" @click="clickAction">
     <div class="prc__cover">
       <img
       :data-test-heart="isFavorite ? 'full' : 'empty'"
@@ -87,7 +87,11 @@
             rating >=0 && rating <=5 && rating % 0.5 == 0
           ).some(rating => !rating)
         }
-      }
+      },
+      didClick: {
+        type: Function,
+        required: false
+      },
     },
     computed: {
       energy() {
@@ -123,6 +127,9 @@
       },
       getAverage(ratings) {
         return ratings.reduce((a,b) => a + b, 0) / ratings.length
+      },
+      clickAction() {
+        this.$emit('didClick')
       }
     }
   }
