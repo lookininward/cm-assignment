@@ -6,6 +6,7 @@ describe('PremiumRecipeCard.vue', () => {
   it('component does render', () => {
     const wrapper = shallowMount(PremiumRecipeCard, {
       propsData: {
+        title: 'delicious chicken dinner',
         calories: 500,
         ratings: [5],
         duration: 75
@@ -30,6 +31,7 @@ describe('PremiumRecipeCard.vue', () => {
   it('emit didClick event when component clicked', () => {
     const wrapper = shallowMount(PremiumRecipeCard, {
       propsData: {
+        title: 'delicious chicken dinner',
         calories: 500,
         ratings: [5],
         duration: 75
@@ -49,6 +51,7 @@ describe('PremiumRecipeCard.vue', () => {
       (isFavorite, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            title: 'delicious chicken dinner',
             calories: 500,
             ratings: [5],
             duration: 75,
@@ -73,7 +76,7 @@ describe('PremiumRecipeCard.vue', () => {
       [498.9789, 'kilojoules', 28, '2,088 Kilojoules'],
       [1374.23344, 'kilojoules', 28, '5,750 Kilojoules'],
       [42089.23, 'kilojoules', 28, '176,101 Kilojoules'],
-      [498.9789, 'calories', 60, '499 Cal'],
+      [498.9789, 'calories', 5000, '499 Cal'],
       [1374.23344, 'kilojoules', 118, '5,750 Kj']
     ];
     test.each(cases)(
@@ -81,6 +84,7 @@ describe('PremiumRecipeCard.vue', () => {
       (calories, energyUnits, duration, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            title: 'delicious chicken dinner',
             calories,
             energyUnits,
             duration,
@@ -112,6 +116,7 @@ describe('PremiumRecipeCard.vue', () => {
       (ratings, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            title: 'delicious chicken dinner',
             calories: 500,
             ratings,
             duration: 75
@@ -155,6 +160,7 @@ describe('PremiumRecipeCard.vue', () => {
       (ratings, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            title: 'delicious chicken dinner',
             calories: 500,
             ratings,
             duration: 75
@@ -180,6 +186,7 @@ describe('PremiumRecipeCard.vue', () => {
       (duration, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            title: 'delicious chicken dinner',
             calories: 500,
             ratings: [5],
             duration

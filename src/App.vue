@@ -9,6 +9,7 @@
 
       <div class="premium-recipe-wrapper">
         <PremiumRecipeCard
+          title="Low Carb Thai Chicken Curry With Coconut Cauliflower Rice There are more things to come, ya hear!"
           :isFavorite="true"
           :calories="1180"
           energy-units="kilojoules"
@@ -17,6 +18,7 @@
           @didClick="goToRecipe"
         />
       </div>
+
     </div>
   </div>
 </template>
@@ -38,38 +40,9 @@ export default {
 </script>
 
 <style>
-/* Variables */
-:root {
-  --font-standard: "proxima-nova", Helvetica, Arial, sans-serif;
-  --font-sm: 12px;
-  --font-md: 14px;
-  --font-lg: 18px;
-
-  --white: #ffffff;
-  --grey-000: #6f737a;
-  --grey-100: #393c40;
-  --grey-200: #0c0c0a;
-  --red-000: #f94642;
-  --blue-000: #3177bb;
-  --blue-100: #2c3e50;
-  --green-000: #1ca677;
-  --orange-000: #fda120;
-
-  --shadow-000: 0px 13px 35px rgba(0, 30, 47, 0.1);
-}
-
-/* Utility Classes */
-.flex {
-  display: flex;
-}
-
-.flex-justify-between {
-  justify-content: space-between;
-}
-
 /* App Container */
 #app {
-  font-family: var(--font-standard);
+  font-family: "proxima-nova", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
