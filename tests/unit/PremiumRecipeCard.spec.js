@@ -5,7 +5,11 @@ describe('PremiumRecipeCard.vue', () => {
 
   it('component does render', () => {
     const wrapper = shallowMount(PremiumRecipeCard, {
-      propsData: { calories: 500, ratings: [5] }
+      propsData: {
+        calories: 500,
+        ratings: [5],
+        duration: 75
+      }
     })
     expect(wrapper.attributes('class')).toBe('prc')
 
@@ -25,7 +29,11 @@ describe('PremiumRecipeCard.vue', () => {
 
   it('emit didClick event when component clicked', () => {
     const wrapper = shallowMount(PremiumRecipeCard, {
-      propsData: { calories: 500, ratings: [5] }
+      propsData: {
+        calories: 500,
+        ratings: [5],
+        duration: 75
+      }
     })
     wrapper.find('.prc').trigger('click')
     expect(wrapper.emitted('didClick')).toHaveLength(1)
@@ -43,6 +51,7 @@ describe('PremiumRecipeCard.vue', () => {
           propsData: {
             calories: 500,
             ratings: [5],
+            duration: 75,
             isFavorite
           }
         })
@@ -54,24 +63,27 @@ describe('PremiumRecipeCard.vue', () => {
 
   describe('compute energy units in calories, kilojoules', () => {
     const cases = [
-      [0, 'calories', '0 Calories'],
-      [100, 'calories', '100 Calories'],
-      [498.9789, 'calories', '499 Calories'],
-      [1374.23344, 'calories', '1,374 Calories'],
-      [42089.23, 'calories', '42,089 Calories'],
-      [0, 'kilojoules', '0 Kilojoules'],
-      [100, 'kilojoules', '418 Kilojoules'],
-      [498.9789, 'kilojoules', '2,088 Kilojoules'],
-      [1374.23344, 'kilojoules', '5,750 Kilojoules'],
-      [42089.23, 'kilojoules', '176,101 Kilojoules']
+      [0, 'calories', 28, '0 Calories'],
+      [100, 'calories', 28, '100 Calories'],
+      [498.9789, 'calories', 28, '499 Calories'],
+      [1374.23344, 'calories', 28, '1,374 Calories'],
+      [42089.23, 'calories', 28, '42,089 Calories'],
+      [0, 'kilojoules', 28, '0 Kilojoules'],
+      [100, 'kilojoules', 28, '418 Kilojoules'],
+      [498.9789, 'kilojoules', 28, '2,088 Kilojoules'],
+      [1374.23344, 'kilojoules', 28, '5,750 Kilojoules'],
+      [42089.23, 'kilojoules', 28, '176,101 Kilojoules'],
+      [498.9789, 'calories', 60, '499 Cal'],
+      [1374.23344, 'kilojoules', 118, '5,750 Kj']
     ];
     test.each(cases)(
       "given %p and %p, returns %p",
-      (calories, energyUnits, expectedResult) => {
+      (calories, energyUnits, duration, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
             calories,
             energyUnits,
+            duration,
             ratings: [5]
           }
         })
@@ -101,7 +113,8 @@ describe('PremiumRecipeCard.vue', () => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
             calories: 500,
-            ratings
+            ratings,
+            duration: 75
           }
         })
         expect(
@@ -143,10 +156,38 @@ describe('PremiumRecipeCard.vue', () => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
             calories: 500,
-            ratings
+            ratings,
+            duration: 75
           }
         })
         expect(wrapper.vm.stars).toStrictEqual(expectedResult)
+      }
+    );
+  })
+
+  describe('compute formatted duration from minutes', () => {
+    const cases = [
+      [0, '0 min'],
+      [45.234, '45 min'],
+      [45.534, '46 min'],
+      [60, '1 hr 0 min'],
+      [125.23, '2 hr 5 min'],
+      [125.83, '2 hr 6 min'],
+      [9999.3, '166 hr 39 min']
+    ];
+    test.each(cases)(
+      "given %p, returns %p",
+      (duration, expectedResult) => {
+        const wrapper = shallowMount(PremiumRecipeCard, {
+          propsData: {
+            calories: 500,
+            ratings: [5],
+            duration
+          }
+        })
+        expect(
+          wrapper.vm.formattedDuration
+        ).toBe(expectedResult)
       }
     );
   })

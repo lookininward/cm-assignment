@@ -38,7 +38,7 @@
         <div class="flex">
           <div class="prc__duration">
             <img class="prc__durationIcon" src="@/assets/icons/clock.svg" />
-            24 min
+            {{formattedDuration}}
           </div>
           <div class="prc__energy">
             <img class="prc__energyIcon" src="@/assets/icons/energy.svg" />
@@ -78,7 +78,6 @@
         default: 'calories',
         validator: prop => ['calories', 'kilojoules'].includes(prop)
       },
-
       ratings: {
         type: Array,
         required: true,
@@ -88,6 +87,11 @@
           ).some(rating => !rating)
         }
       },
+      duration: {
+        type: Number,
+        required: true,
+        validator: prop => prop >= 0
+      },
       didClick: {
         type: Function,
         required: false
@@ -95,9 +99,14 @@
     },
     computed: {
       energy() {
+        const calories = this.formatNumber(Math.round(this.calories))
+        const kilojoules = this.formatNumber(Math.round(this.calories * 4.184))
+        const labelCal = this.duration >= 60 ? 'Cal' : 'Calories'
+        const labelKj = this.duration >= 60 ? 'Kj' : 'Kilojoules'
+
         return this.energyUnits === 'calories' ?
-          `${this.formatNumber(Math.round(this.calories))} Calories` :
-          `${this.formatNumber(Math.round(this.calories * 4.184))} Kilojoules`
+          `${calories} ${labelCal}` :
+          `${kilojoules} ${labelKj}`
       },
 
       stars() {
@@ -117,7 +126,15 @@
         }
 
         return stars
+      },
+
+      formattedDuration() {
+        const hours = this.duration / 60
+        const rhours = Math.floor(hours)
+        const rminutes = Math.round((hours - rhours) * 60)
+        return rhours ? `${rhours} hr ${rminutes} min` : `${rminutes} min`
       }
+
     },
     methods: {
       formatNumber(number) {
