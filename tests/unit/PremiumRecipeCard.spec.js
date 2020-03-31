@@ -27,7 +27,6 @@ describe('PremiumRecipeCard.vue', () => {
     expect(wrapper.find('.prc__info').exists()).toBe(true)
     expect(wrapper.find('.prc__header').exists()).toBe(true)
     expect(wrapper.find('.prc__ratings').exists()).toBe(true)
-    expect(wrapper.find('.prc__duration').exists()).toBe(true)
     expect(wrapper.find('.prc__energy').exists()).toBe(true)
     expect(wrapper.find('.prc__macros').exists()).toBe(true)
   })
@@ -191,38 +190,6 @@ describe('PremiumRecipeCard.vue', () => {
           }
         })
         expect(wrapper.vm.stars).toStrictEqual(expectedResult)
-      }
-    );
-  })
-
-  describe('compute formatted duration from minutes', () => {
-    const cases = [
-      [0, '0 min'],
-      [45.234, '45 min'],
-      [45.534, '46 min'],
-      [60, '1 hr 0 min'],
-      [125.23, '2 hr 5 min'],
-      [125.83, '2 hr 6 min'],
-      [9999.3, '166 hr 39 min']
-    ];
-    test.each(cases)(
-      "given %p, returns %p",
-      (duration, expectedResult) => {
-        const wrapper = shallowMount(PremiumRecipeCard, {
-          propsData: {
-            cover: 'images/recipe-cover.png',
-            title: 'delicious chicken dinner',
-            calories: 500,
-            ratings: [5],
-            duration,
-            carbs: 20,
-            protein: 16,
-            fat: 6
-          }
-        })
-        expect(
-          wrapper.vm.formattedDuration
-        ).toBe(expectedResult)
       }
     );
   })

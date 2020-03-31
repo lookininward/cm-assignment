@@ -49,10 +49,7 @@
       </div>
       <div class="flex flex-justify-between">
         <div class="flex">
-          <div class="prc__duration">
-            <img class="prc__durationIcon" src="../assets/icons/clock.svg" />
-            {{formattedDuration}}
-          </div>
+          <Duration :duration="duration" />
           <div class="prc__energy">
             <img class="prc__energyIcon" src="../assets/icons/energy.svg" />
             {{energy}}
@@ -72,8 +69,14 @@
 </template>
 
 <script>
+  import Duration from './Duration.vue'
+
   export default {
     name: 'Description',
+    components: {
+      Duration
+    },
+
     props: {
       cover: {
         type: String,
@@ -115,8 +118,7 @@
       },
       duration: {
         type: Number,
-        required: true,
-        validator: prop => prop >= 0
+        required: true
       },
       carbs: {
         type: Number,
@@ -167,15 +169,7 @@
         }
 
         return stars
-      },
-
-      formattedDuration() {
-        const hours = this.duration / 60
-        const rhours = Math.floor(hours)
-        const rminutes = Math.round((hours - rhours) * 60)
-        return rhours ? `${rhours} hr ${rminutes} min` : `${rminutes} min`
       }
-
     },
     methods: {
       formatNumber(number) {
@@ -310,7 +304,6 @@
 }
 
 /* duration, energy, macros breakdown */
-.prc__duration,
 .prc__energy {
   display: flex;
   align-items: center;
@@ -318,14 +311,9 @@
   color: #393c40;
 }
 
-.prc__duration .prc__durationIcon,
 .prc__energy .prc__energyIcon {
   color: #6f737a;
   margin-right: 8px;
-}
-
-.prc__duration {
-  margin-right: 16px;
 }
 
 .prc__macros {
@@ -359,5 +347,10 @@
 
 .macro.macro--fat {
   background-color: #fda120;
+}
+
+/* Modifiers for nested components */
+.prc .duration {
+  margin-right: 16px;
 }
 </style>
