@@ -27,7 +27,6 @@ describe('PremiumRecipeCard.vue', () => {
     expect(wrapper.find('.prc__info').exists()).toBe(true)
     expect(wrapper.find('.prc__header').exists()).toBe(true)
     expect(wrapper.find('.prc__ratings').exists()).toBe(true)
-    expect(wrapper.find('.prc__energy').exists()).toBe(true)
     expect(wrapper.find('.prc__macros').exists()).toBe(true)
   })
 
@@ -71,42 +70,6 @@ describe('PremiumRecipeCard.vue', () => {
         })
         const heart = wrapper.find('[data-test-heart]')
         expect(heart.attributes()['data-test-heart']).toBe(expectedResult)
-      }
-    );
-  })
-
-  describe('compute energy units in calories, kilojoules', () => {
-    const cases = [
-      [0, 'calories', 28, '0 Calories'],
-      [100, 'calories', 28, '100 Calories'],
-      [498.9789, 'calories', 28, '499 Calories'],
-      [1374.23344, 'calories', 28, '1,374 Calories'],
-      [42089.23, 'calories', 28, '42,089 Calories'],
-      [0, 'kilojoules', 28, '0 Kilojoules'],
-      [100, 'kilojoules', 28, '418 Kilojoules'],
-      [498.9789, 'kilojoules', 28, '2,088 Kilojoules'],
-      [1374.23344, 'kilojoules', 28, '5,750 Kilojoules'],
-      [42089.23, 'kilojoules', 28, '176,101 Kilojoules'],
-      [498.9789, 'calories', 5000, '499 Cal'],
-      [1374.23344, 'kilojoules', 118, '5,750 Kj']
-    ];
-    test.each(cases)(
-      "given %p and %p, returns %p",
-      (calories, energyUnits, duration, expectedResult) => {
-        const wrapper = shallowMount(PremiumRecipeCard, {
-          propsData: {
-            cover: 'images/recipe-cover.png',
-            title: 'delicious chicken dinner',
-            calories,
-            energyUnits,
-            duration,
-            ratings: [5],
-            carbs: 20,
-            protein: 16,
-            fat: 6
-          }
-        })
-        expect(wrapper.vm.energy).toBe(expectedResult)
       }
     );
   })

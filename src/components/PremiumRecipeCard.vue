@@ -43,17 +43,17 @@
           />
         </template>
         <div class="ratingsLink">
-          {{formatNumber(ratings.length)}}
-          {{ratings.length > 1 ? 'ratings' : 'rating'}}
+          {{formattedRatings}}
         </div>
       </div>
       <div class="flex flex-justify-between">
         <div class="flex">
           <Duration :duration="duration" />
-          <div class="prc__energy">
-            <img class="prc__energyIcon" src="../assets/icons/energy.svg" />
-            {{energy}}
-          </div>
+          <Energy
+            :calories="calories"
+            :unitType="energyUnits"
+            :duration="duration"
+          />
         </div>
         <div class="prc__macros">
           <div class="macro macro--carbs"></div>
@@ -70,11 +70,14 @@
 
 <script>
   import Duration from './Duration.vue'
+  import Energy from './Energy.vue'
+  import formatNumber from '../helpers/formatNumber'
 
   export default {
-    name: 'Description',
+    name: 'PremiumRecipeCard',
     components: {
-      Duration
+      Duration,
+      Energy
     },
 
     props: {
@@ -104,8 +107,7 @@
       },
       energyUnits: {
         type: String,
-        default: 'calories',
-        validator: prop => ['calories', 'kilojoules'].includes(prop)
+        required: false
       },
       ratings: {
         type: Array,
@@ -141,17 +143,6 @@
       },
     },
     computed: {
-      energy() {
-        const calories = this.formatNumber(Math.round(this.calories))
-        const kilojoules = this.formatNumber(Math.round(this.calories * 4.184))
-        const labelCal = this.duration >= 5000 ? 'Cal' : 'Calories'
-        const labelKj = this.duration >= 60 ? 'Kj' : 'Kilojoules'
-
-        return this.energyUnits === 'calories' ?
-          `${calories} ${labelCal}` :
-          `${kilojoules} ${labelKj}`
-      },
-
       stars() {
         const rating = this.getAverage(this.ratings).toString().split('.')
         let stars = []
@@ -169,14 +160,13 @@
         }
 
         return stars
+      },
+      formattedRatings() {
+        const number = formatNumber(this.ratings.length)
+        return `${number} ${this.ratings.length > 1 ? 'ratings' : 'rating'}`
       }
     },
     methods: {
-      formatNumber(number) {
-        let parts = number.toString().split(".")
-        parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-        return parts.join(".")
-      },
       getAverage(ratings) {
         return ratings.reduce((a,b) => a + b, 0) / ratings.length
       },
@@ -301,19 +291,6 @@
   font-weight: 500;
   font-size: 14px;
   color: #1ca677;
-}
-
-/* duration, energy, macros breakdown */
-.prc__energy {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  color: #393c40;
-}
-
-.prc__energy .prc__energyIcon {
-  color: #6f737a;
-  margin-right: 8px;
 }
 
 .prc__macros {

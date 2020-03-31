@@ -13,7 +13,7 @@
           :title="recipe.title"
           :isFavorite="recipe.isFavorite"
           :calories="recipe.calories"
-          :energy-units="recipe.energyUnits"
+          :energy-units="energyUnitType"
           :ratings="recipe.ratings"
           :duration="recipe.duration"
           :carbs="recipe.carbs"
@@ -42,13 +42,13 @@ export default {
         title: 'Low Carb Thai Chicken Curry With Coconut Cauliflower Rice',
         isFavorite: false,
         calories: 489,
-        energyUnits: 'calories',
         ratings: [...Array(200)].map(() => 3),
         duration: 24,
         carbs: 20,
         protein: 16,
         fat: 6
-      }
+      },
+      energyUnitType: 'calories'
     }
   },
   methods: {
