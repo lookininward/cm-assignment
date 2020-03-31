@@ -55,14 +55,11 @@
             :duration="duration"
           />
         </div>
-        <div class="prc__macros">
-          <div class="macro macro--carbs"></div>
-          <div class="amount">{{carbs}}g</div>
-          <div class="macro macro--protein"></div>
-          <div class="amount">{{protein}}g</div>
-          <div class="macro macro--fat"></div>
-          <div class="amount">{{fat}}g</div>
-        </div>
+        <Macros
+          :carbs="carbs"
+          :protein="protein"
+          :fat="fat"
+        />
       </div>
     </div>
   </div>
@@ -71,13 +68,15 @@
 <script>
   import Duration from './Duration.vue'
   import Energy from './Energy.vue'
+  import Macros from './Macros.vue'
   import formatNumber from '../helpers/formatNumber'
 
   export default {
     name: 'PremiumRecipeCard',
     components: {
       Duration,
-      Energy
+      Energy,
+      Macros
     },
 
     props: {
@@ -124,18 +123,15 @@
       },
       carbs: {
         type: Number,
-        required: true,
-        validator: prop => typeof prop === 'number'
+        required: true
       },
       protein: {
         type: Number,
-        required: true,
-        validator: prop => typeof prop === 'number'
+        required: true
       },
       fat: {
         type: Number,
-        required: true,
-        validator: prop => typeof prop === 'number'
+        required: true
       },
       didClick: {
         type: Function,
@@ -291,39 +287,6 @@
   font-weight: 500;
   font-size: 14px;
   color: #1ca677;
-}
-
-.prc__macros {
-  display: flex;
-  align-items: center;
-}
-
-.prc__macros .macro {
-  margin-right: 4px;
-}
-
-.prc__macros .amount {
-  margin-right: 8px;
-  font-size: 12px;
-  color: #6f737a;
-}
-
-.macro {
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
-}
-
-.macro.macro--carbs {
-  background-color: #f94642;
-}
-
-.macro.macro--protein {
-  background-color: #3177bb;
-}
-
-.macro.macro--fat {
-  background-color: #fda120;
 }
 
 /* Modifiers for nested components */

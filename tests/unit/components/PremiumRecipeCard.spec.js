@@ -27,7 +27,6 @@ describe('PremiumRecipeCard.vue', () => {
     expect(wrapper.find('.prc__info').exists()).toBe(true)
     expect(wrapper.find('.prc__header').exists()).toBe(true)
     expect(wrapper.find('.prc__ratings').exists()).toBe(true)
-    expect(wrapper.find('.prc__macros').exists()).toBe(true)
   })
 
   it('emit didClick event when component clicked', () => {
