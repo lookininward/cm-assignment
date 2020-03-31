@@ -9,12 +9,16 @@
 
       <div class="premium-recipe-wrapper">
         <PremiumRecipeCard
-          title="Low Carb Thai Chicken Curry With Coconut Cauliflower Rice There are more things to come, ya hear!"
-          :isFavorite="true"
-          :calories="1180"
-          energy-units="kilojoules"
-          :ratings="[3.5, 5, 0.5, 2.5, 0, 4, 5, 5, 5, 4, 5, 3.5, 5]"
-          :duration="128"
+          :cover="recipe.cover"
+          :title="recipe.title"
+          :isFavorite="recipe.isFavorite"
+          :calories="recipe.calories"
+          :energy-units="recipe.energyUnits"
+          :ratings="recipe.ratings"
+          :duration="recipe.duration"
+          :carbs="recipe.carbs"
+          :protein="recipe.protein"
+          :fat="recipe.fat"
           @didClick="goToRecipe"
         />
       </div>
@@ -30,6 +34,22 @@ export default {
   name: "App",
   components: {
     PremiumRecipeCard
+  },
+  data() {
+    return {
+      recipe: {
+        cover: 'images/recipe-cover.png',
+        title: 'Low Carb Thai Chicken Curry With Coconut Cauliflower Rice',
+        isFavorite: false,
+        calories: 489,
+        energyUnits: 'calories',
+        ratings: [...Array(200)].map(() => 3),
+        duration: 24,
+        carbs: 20,
+        protein: 16,
+        fat: 6
+      }
+    }
   },
   methods: {
     goToRecipe() {

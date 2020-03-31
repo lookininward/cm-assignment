@@ -1,7 +1,17 @@
 import { action } from "@storybook/addon-actions";
-import { withKnobs, text, boolean, number, select } from "@storybook/addon-knobs";
+import {
+  withKnobs,
+  text,
+  boolean,
+  number,
+  select
+} from "@storybook/addon-knobs";
 
 import PremiumRecipeCard from "../src/components/PremiumRecipeCard.vue";
+import cover1 from '../public/images/recipe-cover.png';
+import cover2 from '../public/images/pokebowl-cover.jpg';
+import cover3 from '../public/images/italian-cover.png';
+import cover4 from '../public/images/tacos-cover.png';
 
 export default {
   title: "PremiumRecipeCard",
@@ -12,11 +22,19 @@ export default {
 export const Default = () => ({
   components: { PremiumRecipeCard },
    props: {
+    cover: {
+      default: select(
+        'images',
+        [cover1, cover2, cover3, cover4],
+        cover2,
+        'prc-controls'
+      )
+    },
     title: {
-      default: text('title', 'Low Carb Thai Chicken Curry With Coconut Cauliflower Rice There are more things to come, ya hear!', 'prc-controls')
+      default: text('title', 'Salmon poke bowl with rice, edamame beans, avocado and radishes', 'prc-controls')
     },
     isFavorite: {
-      default: boolean('is favorite?', false, 'prc-controls')
+      default: boolean('is favorite?', true, 'prc-controls')
     },
     calories: {
       default: number('calories', 1180, {}, 'prc-controls')
@@ -25,7 +43,7 @@ export const Default = () => ({
       default: select(
         'energyUnits',
         ['calories', 'kilojoules'],
-        'calories',
+        'kilojoules',
         'prc-controls'
       )
     },
@@ -44,28 +62,37 @@ export const Default = () => ({
           four: [4],
           fourhalf: [4.5],
           five: [5],
-          manyRatings: [...Array(Math.floor(Math.random() * 10000))].map(
-            () => Math.random() * 6
-          ),
+          manyRatings: [...Array(42084)].map(() => 4)
         },
-        [3.5, 3.5, 3.5],
+        [...Array(37485)].map(() => 4.5),
         'prc-controls'
       )
     },
     duration: {
-      default: number('duration', 128, {}, 'prc-controls')
+      default: number('duration', 18, {}, 'prc-controls')
+    },
+    carbs: {
+      default: number('carbs', 12, {}, 'prc-controls')
+    },
+    protein: {
+      default: number('protein', 19, {}, 'prc-controls')
+    },
+    fat: {
+      default: number('fat', 8, {}, 'prc-controls')
     }
-
-
   },
   template: `
     <PremiumRecipeCard
+      :cover="cover"
       :title="title"
       :isFavorite="isFavorite"
       :calories="calories"
       :energyUnits="energyUnits"
       :ratings="ratings"
       :duration="duration"
+      :carbs="carbs"
+      :protein="protein"
+      :fat="fat"
       @didClick="action('clicked component')"
     />
   `,

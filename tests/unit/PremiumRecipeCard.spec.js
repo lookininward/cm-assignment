@@ -6,10 +6,14 @@ describe('PremiumRecipeCard.vue', () => {
   it('component does render', () => {
     const wrapper = shallowMount(PremiumRecipeCard, {
       propsData: {
+        cover: 'images/recipe-cover.png',
         title: 'delicious chicken dinner',
         calories: 500,
         ratings: [5],
-        duration: 75
+        duration: 75,
+        carbs: 20,
+        protein: 16,
+        fat: 6
       }
     })
     expect(wrapper.attributes('class')).toBe('prc')
@@ -31,10 +35,14 @@ describe('PremiumRecipeCard.vue', () => {
   it('emit didClick event when component clicked', () => {
     const wrapper = shallowMount(PremiumRecipeCard, {
       propsData: {
+        cover: 'images/recipe-cover.png',
         title: 'delicious chicken dinner',
         calories: 500,
         ratings: [5],
-        duration: 75
+        duration: 75,
+        carbs: 20,
+        protein: 16,
+        fat: 6
       }
     })
     wrapper.find('.prc').trigger('click')
@@ -51,11 +59,15 @@ describe('PremiumRecipeCard.vue', () => {
       (isFavorite, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            cover: 'images/recipe-cover.png',
             title: 'delicious chicken dinner',
             calories: 500,
             ratings: [5],
             duration: 75,
-            isFavorite
+            isFavorite,
+            carbs: 20,
+            protein: 16,
+            fat: 6
           }
         })
         const heart = wrapper.find('[data-test-heart]')
@@ -84,11 +96,15 @@ describe('PremiumRecipeCard.vue', () => {
       (calories, energyUnits, duration, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            cover: 'images/recipe-cover.png',
             title: 'delicious chicken dinner',
             calories,
             energyUnits,
             duration,
-            ratings: [5]
+            ratings: [5],
+            carbs: 20,
+            protein: 16,
+            fat: 6
           }
         })
         expect(wrapper.vm.energy).toBe(expectedResult)
@@ -116,10 +132,14 @@ describe('PremiumRecipeCard.vue', () => {
       (ratings, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            cover: 'images/recipe-cover.png',
             title: 'delicious chicken dinner',
             calories: 500,
             ratings,
-            duration: 75
+            duration: 75,
+            carbs: 20,
+            protein: 16,
+            fat: 6
           }
         })
         expect(
@@ -160,10 +180,14 @@ describe('PremiumRecipeCard.vue', () => {
       (ratings, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            cover: 'images/recipe-cover.png',
             title: 'delicious chicken dinner',
             calories: 500,
             ratings,
-            duration: 75
+            duration: 75,
+            carbs: 20,
+            protein: 16,
+            fat: 6
           }
         })
         expect(wrapper.vm.stars).toStrictEqual(expectedResult)
@@ -186,10 +210,14 @@ describe('PremiumRecipeCard.vue', () => {
       (duration, expectedResult) => {
         const wrapper = shallowMount(PremiumRecipeCard, {
           propsData: {
+            cover: 'images/recipe-cover.png',
             title: 'delicious chicken dinner',
             calories: 500,
             ratings: [5],
-            duration
+            duration,
+            carbs: 20,
+            protein: 16,
+            fat: 6
           }
         })
         expect(

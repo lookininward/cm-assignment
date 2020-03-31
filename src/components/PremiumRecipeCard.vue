@@ -1,8 +1,20 @@
 <template>
   <div class="prc" @click="clickAction">
-    <div class="prc__cover">
+    <div
+      class="prc__cover"
+      :style="{
+        'background-image': `
+          linear-gradient(
+              180deg,
+              rgba(0, 0, 0, 0.0001) 0%,
+              rgba(22, 27, 35, 0.2) 70.94%,
+              rgba(26, 29, 34, 0.79) 106.25%
+            ),
+          url(${cover})
+      `}"
+    >
       <img
-      :data-test-heart="isFavorite ? 'full' : 'empty'"
+        :data-test-heart="isFavorite ? 'full' : 'empty'"
         class="prc__heart"
         :src="
           isFavorite ? require('../assets/icons/heart-full.svg') :
@@ -47,12 +59,12 @@
           </div>
         </div>
         <div class="prc__macros">
-          <div class="macro macro--carb"></div>
-          <div class="amount">20g</div>
+          <div class="macro macro--carbs"></div>
+          <div class="amount">{{carbs}}g</div>
           <div class="macro macro--protein"></div>
-          <div class="amount">16g</div>
+          <div class="amount">{{protein}}g</div>
           <div class="macro macro--fat"></div>
-          <div class="amount">6g</div>
+          <div class="amount">{{fat}}g</div>
         </div>
       </div>
     </div>
@@ -63,6 +75,14 @@
   export default {
     name: 'Description',
     props: {
+      cover: {
+        type: String,
+        required: true,
+        validator: prop => {
+          const extension = prop.split('.').pop();
+          return extension === 'png' || extension === 'jpg'
+        }
+      },
       title: {
         type: String,
         required: true,
@@ -97,6 +117,21 @@
         type: Number,
         required: true,
         validator: prop => prop >= 0
+      },
+      carbs: {
+        type: Number,
+        required: true,
+        validator: prop => typeof prop === 'number'
+      },
+      protein: {
+        type: Number,
+        required: true,
+        validator: prop => typeof prop === 'number'
+      },
+      fat: {
+        type: Number,
+        required: true,
+        validator: prop => typeof prop === 'number'
       },
       didClick: {
         type: Function,
@@ -187,13 +222,6 @@
   position: absolute;
   width: 100%;
   height: 200px;
-  background-image: linear-gradient(
-      180deg,
-      rgba(0, 0, 0, 0.0001) 0%,
-      rgba(22, 27, 35, 0.2) 70.94%,
-      rgba(26, 29, 34, 0.79) 106.25%
-    ),
-    url("../assets/recipe-cover.png");
   background-size: cover;
   transition: opacity 0.3s;
 }
@@ -321,7 +349,7 @@
   border-radius: 3px;
 }
 
-.macro.macro--carb {
+.macro.macro--carbs {
   background-color: #f94642;
 }
 
