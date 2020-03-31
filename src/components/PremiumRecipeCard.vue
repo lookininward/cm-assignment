@@ -30,22 +30,7 @@
       <div class="prc__header">
         {{title}}
       </div>
-      <div class="prc__ratings">
-        <template v-for="(star, idx) in stars">
-          <img
-            class="prc__star"
-            :key="idx"
-            :src="
-              star === 'f' ? require('../assets/icons/star-full.svg') :
-              star === 'h' ? require('../assets/icons/star-half.svg') :
-                             require('../assets/icons/star-empty.svg')
-            "
-          />
-        </template>
-        <div class="ratingsLink">
-          {{formattedRatings}}
-        </div>
-      </div>
+      <Ratings :ratings="ratings" />
       <div class="flex flex-justify-between">
         <div class="flex">
           <Duration :duration="duration" />
@@ -69,14 +54,15 @@
   import Duration from './Duration.vue'
   import Energy from './Energy.vue'
   import Macros from './Macros.vue'
-  import formatNumber from '../helpers/formatNumber'
+  import Ratings from './Ratings.vue'
 
   export default {
     name: 'PremiumRecipeCard',
     components: {
       Duration,
       Energy,
-      Macros
+      Macros,
+      Ratings
     },
 
     props: {
@@ -110,12 +96,7 @@
       },
       ratings: {
         type: Array,
-        required: true,
-        validator: prop => {
-          return !prop.map(rating =>
-            rating >=0 && rating <=5 && rating % 0.5 == 0
-          ).some(rating => !rating)
-        }
+        required: true
       },
       duration: {
         type: Number,
@@ -138,34 +119,7 @@
         required: false
       },
     },
-    computed: {
-      stars() {
-        const rating = this.getAverage(this.ratings).toString().split('.')
-        let stars = []
-
-        for (let i = 0; i < parseInt(rating[0]); i++) {
-          stars.push('f')
-        }
-
-        if (rating[1]) {
-          stars.push('h')
-        }
-
-        while (stars.length < 5) {
-          stars.push('e')
-        }
-
-        return stars
-      },
-      formattedRatings() {
-        const number = formatNumber(this.ratings.length)
-        return `${number} ${this.ratings.length > 1 ? 'ratings' : 'rating'}`
-      }
-    },
     methods: {
-      getAverage(ratings) {
-        return ratings.reduce((a,b) => a + b, 0) / ratings.length
-      },
       clickAction() {
         this.$emit('didClick')
       }
@@ -265,28 +219,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-}
-
-/* star ratings */
-.prc__ratings {
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-
-.prc__ratings .prc__star {
-  margin-right: 1.69px;
-}
-
-.prc__ratings .prc__star:nth-child(5) {
-  margin-right: 8px;
-}
-
-.ratingsLink {
-  font-weight: 500;
-  font-size: 14px;
-  color: #1ca677;
 }
 
 /* Modifiers for nested components */
