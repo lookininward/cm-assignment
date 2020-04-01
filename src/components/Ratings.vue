@@ -2,13 +2,22 @@
   <div class="ratings">
     <template v-for="(star, idx) in stars">
       <img
+        v-if="star === 'f'"
         class="ratings__star"
         :key="idx"
-        :src="
-          star === 'f' ? require('../assets/icons/star-full.svg') :
-          star === 'h' ? require('../assets/icons/star-half.svg') :
-                         require('../assets/icons/star-empty.svg')
-        "
+        src="@/assets/icons/star-full.svg"
+      />
+      <img
+        v-else-if="star === 'h'"
+        class="ratings__star"
+        :key="idx"
+        src="@/assets/icons/star-half.svg"
+      />
+      <img
+        v-else
+        class="ratings__star"
+        :key="idx"
+        src="@/assets/icons/star-empty.svg"
       />
     </template>
     <div class="ratings__total">
@@ -18,8 +27,8 @@
 </template>
 
 <script>
-  import formatNumber from '../helpers/formatNumber'
-  import getAverageNumber from '../helpers/getAverageNumber'
+  import formatNumber from '@/helpers/formatNumber'
+  import getAverageNumber from '@/helpers/getAverageNumber'
 
   export default {
     name: 'Ratings',
@@ -67,11 +76,11 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .ratings {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: $font-md;
   margin-bottom: 8px;
 }
 
@@ -85,7 +94,7 @@
 
 .ratings__total {
   font-weight: 500;
-  font-size: 14px;
+  font-size: $font-md;
   color: #1ca677;
 }
 </style>

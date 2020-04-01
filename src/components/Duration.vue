@@ -3,7 +3,7 @@
     <img
       v-if="displayIcon"
       class="duration__icon"
-      src="../assets/icons/clock.svg"
+      src="@/assets/icons/clock.svg"
     />
     <div class="duration__formatted">
       {{formattedDuration}}
@@ -38,11 +38,11 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .duration {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: $font-sm;
   color: #393c40;
 }
 

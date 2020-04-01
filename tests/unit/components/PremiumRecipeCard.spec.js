@@ -20,7 +20,6 @@ describe('PremiumRecipeCard.vue', () => {
 
     // Cover
     expect(wrapper.find('.prc__cover').exists()).toBe(true)
-    expect(wrapper.find('.prc__heart').exists()).toBe(true)
     expect(wrapper.find('.prc__tag').exists()).toBe(true)
 
     // Info
@@ -47,8 +46,8 @@ describe('PremiumRecipeCard.vue', () => {
 
   describe('compute heart fill', () => {
     const cases = [
-      [true, 'full'],
-      [false, 'empty']
+      [true, 'heart heart--full'],
+      [false, 'heart heart--empty']
     ]
     test.each(cases)(
       "given %p, returns %p",
@@ -66,8 +65,8 @@ describe('PremiumRecipeCard.vue', () => {
             fat: 6
           }
         })
-        const heart = wrapper.find('[data-test-heart]')
-        expect(heart.attributes()['data-test-heart']).toBe(expectedResult)
+        const heart = wrapper.find('.heart')
+        expect(heart.attributes('class')).toBe(expectedResult)
       }
     );
   })

@@ -41,7 +41,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .macros,
 .macro {
   display: flex;
@@ -69,7 +69,7 @@ export default {
 
 .macro__amount {
   margin-right: 8px;
-  font-size: 12px;
+  font-size: $font-sm;
   color: #6f737a;
 }
 </style>

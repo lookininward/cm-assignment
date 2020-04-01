@@ -1,6 +1,6 @@
 <template>
   <div class="energy">
-    <img class="energy__icon" src="../assets/icons/energy.svg" />
+    <img class="energy__icon" src="@/assets/icons/energy.svg" />
     <div class="energy__formatted">
       {{formattedEnergy}}
     </div>
@@ -8,7 +8,7 @@
 </template>
 
 <script>
-  import formatNumber from '../helpers/formatNumber'
+  import formatNumber from '@/helpers/formatNumber'
   export default {
     name: 'Energy',
     props: {
@@ -43,11 +43,11 @@
   }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .energy {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: $font-sm;
   color: #393c40;
 }
 

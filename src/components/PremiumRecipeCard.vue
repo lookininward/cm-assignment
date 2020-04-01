@@ -13,16 +13,20 @@
           url(${cover})
       `}"
     >
+      <!-- Heart Component -->
       <img
-        :data-test-heart="isFavorite ? 'full' : 'empty'"
-        class="prc__heart"
-        :src="
-          isFavorite ? require('../assets/icons/heart-full.svg') :
-                       require('../assets/icons/heart-empty.svg')
-        "
-      />
+        v-if="isFavorite"
+        class="heart heart--full"
+        src="@/assets/icons/heart-full.svg"
+      >
+      <img
+        v-else
+        class="heart heart--empty"
+        src="@/assets/icons/heart-empty.svg"
+      >
+      <!-- Tag Component -->
       <div class="prc__tag">
-        <img class="prc__tagIcon" src="../assets/icons/trophy.svg" />
+        <img class="prc__tagIcon" src="@/assets/icons/trophy.svg" />
         Premium Recipe
       </div>
     </div>
@@ -51,18 +55,18 @@
 </template>
 
 <script>
-  import Duration from './Duration.vue'
-  import Energy from './Energy.vue'
-  import Macros from './Macros.vue'
-  import Ratings from './Ratings.vue'
+  import Ratings from '@/components/Ratings.vue'
+  import Duration from '@/components/Duration.vue'
+  import Energy from '@/components/Energy.vue'
+  import Macros from '@/components/Macros.vue'
 
   export default {
     name: 'PremiumRecipeCard',
     components: {
+      Ratings,
       Duration,
       Energy,
-      Macros,
-      Ratings
+      Macros
     },
 
     props: {
@@ -74,16 +78,24 @@
           return extension === 'png' || extension === 'jpg'
         }
       },
-      title: {
-        type: String,
-        required: true,
-        validator: prop => typeof prop === 'string' && prop.length
-      },
       isFavorite: {
         type: Boolean,
         required: false,
         default: false,
         validator: prop => typeof prop === 'boolean'
+      },
+      title: {
+        type: String,
+        required: true,
+        validator: prop => typeof prop === 'string' && prop.length
+      },
+      ratings: {
+        type: Array,
+        required: true
+      },
+      duration: {
+        type: Number,
+        required: true
       },
       calories: {
         type: Number,
@@ -93,14 +105,6 @@
       energyUnits: {
         type: String,
         required: false
-      },
-      ratings: {
-        type: Array,
-        required: true
-      },
-      duration: {
-        type: Number,
-        required: true
       },
       carbs: {
         type: Number,
@@ -117,7 +121,7 @@
       didClick: {
         type: Function,
         required: false
-      },
+      }
     },
     methods: {
       clickAction() {
@@ -127,16 +131,7 @@
   }
 </script>
 
-<style scoped>
-.flex {
-  display: flex;
-}
-
-.flex-justify-between {
-  justify-content: space-between;
-}
-
-/* container */
+<style scoped lang="scss">
 .prc {
   position: relative;
   width: 343px;
@@ -146,9 +141,7 @@
   border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  font-family: "proxima-nova", Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  @include fontStandard();
 }
 
 /* section -- cover */
@@ -164,7 +157,7 @@
   opacity: 0.8;
 }
 
-.prc__heart {
+.prc .heart {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -182,7 +175,7 @@
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   font-weight: 600;
-  font-size: 12px;
+  font-size: $font-sm;
   letter-spacing: -0.2px;
   color: #ffffff;
 }
@@ -205,7 +198,7 @@
 .prc__header {
   display: block;
   font-weight: bold;
-  font-size: 18px;
+  font-size: $font-lg;
   line-height: 20px;
   color: #0c0c0a;
   text-align: left;

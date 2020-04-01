@@ -8,6 +8,7 @@ import {
 } from "@storybook/addon-knobs";
 
 import PremiumRecipeCard from "../src/components/PremiumRecipeCard.vue";
+import App from "../src/App.vue";
 import cover1 from '../public/images/recipe-cover.png';
 import cover2 from '../public/images/pokebowl-cover.jpg';
 import cover3 from '../public/images/italian-cover.png';
@@ -20,7 +21,7 @@ export default {
 };
 
 export const Default = () => ({
-  components: { PremiumRecipeCard },
+  components: { App, PremiumRecipeCard },
    props: {
     cover: {
       default: select(
