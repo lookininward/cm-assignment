@@ -13,17 +13,8 @@
           url(${cover})
       `}"
     >
-      <!-- Heart Component -->
-      <img
-        v-if="isFavorite"
-        class="heart heart--full"
-        src="@/assets/icons/heart-full.svg"
-      >
-      <img
-        v-else
-        class="heart heart--empty"
-        src="@/assets/icons/heart-empty.svg"
-      >
+      <Heart :isFull="isLiked"/>
+
       <!-- Tag Component -->
       <div class="prc__tag">
         <img class="prc__tagIcon" src="@/assets/icons/trophy.svg" />
@@ -55,6 +46,7 @@
 </template>
 
 <script>
+  import Heart from '@/components/Heart.vue'
   import Ratings from '@/components/Ratings.vue'
   import Duration from '@/components/Duration.vue'
   import Energy from '@/components/Energy.vue'
@@ -63,6 +55,7 @@
   export default {
     name: 'PremiumRecipeCard',
     components: {
+      Heart,
       Ratings,
       Duration,
       Energy,
@@ -78,11 +71,9 @@
           return extension === 'png' || extension === 'jpg'
         }
       },
-      isFavorite: {
+      isLiked: {
         type: Boolean,
-        required: false,
-        default: false,
-        validator: prop => typeof prop === 'boolean'
+        required: false
       },
       title: {
         type: String,
