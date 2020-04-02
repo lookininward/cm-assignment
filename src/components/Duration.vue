@@ -6,14 +6,14 @@
       src="@/assets/icons/clock.svg"
     />
     <div class="duration__formatted">
-      {{formattedDuration}}
+      {{ formattedDuration }}
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Duration',
+  name: "Duration",
   props: {
     duration: {
       type: Number,
@@ -24,18 +24,18 @@ export default {
       type: Boolean,
       required: false,
       default: true,
-      validator: prop => typeof prop === 'boolean'
-    },
+      validator: prop => typeof prop === "boolean"
+    }
   },
   computed: {
     formattedDuration() {
-      const hours = this.duration / 60
-      const rhours = Math.floor(hours)
-      const rminutes = Math.round((hours - rhours) * 60)
-      return rhours ? `${rhours} hr ${rminutes} min` : `${rminutes} min`
+      const hours = this.duration / 60;
+      const rhours = Math.floor(hours);
+      const rminutes = Math.round((hours - rhours) * 60);
+      return rhours ? `${rhours} hr ${rminutes} min` : `${rminutes} min`;
     }
   }
-}
+};
 </script>
 
 <style scoped lang="scss">

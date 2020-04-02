@@ -4,18 +4,21 @@ import Duration from "../src/components/Duration.vue";
 export default {
   title: "Duration",
   component: Duration,
-  decorators: [withKnobs]
+  decorators: [withKnobs],
+  parameters: {
+    backgrounds: [{ name: "white", value: "#ffffff", default: true }]
+  }
 };
 
 export const Default = () => ({
   components: { Duration },
-   props: {
+  props: {
     displayIcon: {
-      default: boolean('display icon?', true, 'duration-controls')
+      default: boolean("display icon", true, "duration")
     },
     duration: {
-      default: number('duration', 86, {}, 'duration-controls')
-    },
+      default: number("duration", 86, {}, "duration")
+    }
   },
   template: `
     <Duration

@@ -4,18 +4,21 @@ import Ratings from "../src/components/Ratings.vue";
 export default {
   title: "Ratings",
   component: Ratings,
-  decorators: [withKnobs]
+  decorators: [withKnobs],
+  parameters: {
+    backgrounds: [{ name: "white", value: "#ffffff" }]
+  }
 };
 
 export const Default = () => ({
   components: { Ratings },
-   props: {
+  props: {
     ratings: {
       default: select(
-        'ratings',
+        "ratings",
         {
           zero: [0],
-          half: [.5],
+          half: [0.5],
           one: [1],
           onehalf: [1.5],
           two: [2],
@@ -28,7 +31,7 @@ export const Default = () => ({
           manyRatings: [...Array(42084)].map(() => 4)
         },
         [...Array(37485)].map(() => 4.5),
-        'ratings-controls'
+        "ratings-controls"
       )
     }
   },

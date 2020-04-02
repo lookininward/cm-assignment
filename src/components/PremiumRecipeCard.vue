@@ -11,19 +11,15 @@
               rgba(26, 29, 34, 0.79) 106.25%
             ),
           url(${cover})
-      `}"
+      `
+      }"
     >
-      <Heart :isFull="isLiked"/>
-
-      <!-- Tag Component -->
-      <div class="prc__tag">
-        <img class="prc__tagIcon" src="@/assets/icons/trophy.svg" />
-        Premium Recipe
-      </div>
+      <Heart :isFull="isLiked" />
+      <Badge icon="trophy" label="Premium Recipe" />
     </div>
     <div class="prc__info">
       <div class="prc__header">
-        {{title}}
+        {{ title }}
       </div>
       <Ratings :ratings="ratings" />
       <div class="flex flex-justify-between">
@@ -35,91 +31,88 @@
             :duration="duration"
           />
         </div>
-        <Macros
-          :carbs="carbs"
-          :protein="protein"
-          :fat="fat"
-        />
+        <Macros :carbs="carbs" :protein="protein" :fat="fat" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-  import Heart from '@/components/Heart.vue'
-  import Ratings from '@/components/Ratings.vue'
-  import Duration from '@/components/Duration.vue'
-  import Energy from '@/components/Energy.vue'
-  import Macros from '@/components/Macros.vue'
+import Heart from "@/components/Heart.vue";
+import Badge from "@/components/Badge.vue";
+import Ratings from "@/components/Ratings.vue";
+import Duration from "@/components/Duration.vue";
+import Energy from "@/components/Energy.vue";
+import Macros from "@/components/Macros.vue";
 
-  export default {
-    name: 'PremiumRecipeCard',
-    components: {
-      Heart,
-      Ratings,
-      Duration,
-      Energy,
-      Macros
-    },
+export default {
+  name: "PremiumRecipeCard",
+  components: {
+    Heart,
+    Badge,
+    Ratings,
+    Duration,
+    Energy,
+    Macros
+  },
 
-    props: {
-      cover: {
-        type: String,
-        required: true,
-        validator: prop => {
-          const extension = prop.split('.').pop();
-          return extension === 'png' || extension === 'jpg'
-        }
-      },
-      isLiked: {
-        type: Boolean,
-        required: false
-      },
-      title: {
-        type: String,
-        required: true,
-        validator: prop => typeof prop === 'string' && prop.length
-      },
-      ratings: {
-        type: Array,
-        required: true
-      },
-      duration: {
-        type: Number,
-        required: true
-      },
-      calories: {
-        type: Number,
-        required: true,
-        validator: prop => prop >= 0
-      },
-      energyUnits: {
-        type: String,
-        required: false
-      },
-      carbs: {
-        type: Number,
-        required: true
-      },
-      protein: {
-        type: Number,
-        required: true
-      },
-      fat: {
-        type: Number,
-        required: true
-      },
-      didClick: {
-        type: Function,
-        required: false
+  props: {
+    cover: {
+      type: String,
+      required: true,
+      validator: prop => {
+        const extension = prop.split(".").pop();
+        return extension === "png" || extension === "jpg";
       }
     },
-    methods: {
-      clickAction() {
-        this.$emit('didClick')
-      }
+    isLiked: {
+      type: Boolean,
+      required: false
+    },
+    title: {
+      type: String,
+      required: true,
+      validator: prop => typeof prop === "string" && prop.length
+    },
+    ratings: {
+      type: Array,
+      required: true
+    },
+    duration: {
+      type: Number,
+      required: true
+    },
+    calories: {
+      type: Number,
+      required: true
+    },
+    energyUnits: {
+      type: String,
+      required: false
+    },
+    carbs: {
+      type: Number,
+      required: true
+    },
+    protein: {
+      type: Number,
+      required: true
+    },
+    fat: {
+      type: Number,
+      required: true
+    },
+    didClick: {
+      type: Function,
+      required: false
+    }
+  },
+  methods: {
+    clickAction() {
+      this.$emit("didClick");
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
@@ -146,33 +139,6 @@
 
 .prc:hover .prc__cover {
   opacity: 0.8;
-}
-
-.prc .heart {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
-
-.prc__tag {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-  width: 117px;
-  height: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.3);
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: $font-sm;
-  letter-spacing: -0.2px;
-  color: #ffffff;
-}
-
-.prc__tag .prc__tagIcon {
-  margin-right: 4px;
 }
 
 /* section -- detailed information */
@@ -206,6 +172,18 @@
 }
 
 /* Modifiers for nested components */
+.prc .heart {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+.prc .badge {
+  position: absolute;
+  bottom: 8px;
+  left: 8px;
+}
+
 .prc .duration {
   margin-right: 16px;
 }

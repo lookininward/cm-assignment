@@ -9,10 +9,10 @@ import {
 
 import PremiumRecipeCard from "../src/components/PremiumRecipeCard.vue";
 import App from "../src/App.vue";
-import cover1 from '../public/images/recipe-cover.png';
-import cover2 from '../public/images/pokebowl-cover.jpg';
-import cover3 from '../public/images/italian-cover.png';
-import cover4 from '../public/images/tacos-cover.png';
+import cover1 from "../public/images/recipe-cover.png";
+import cover2 from "../public/images/pokebowl-cover.jpg";
+import cover3 from "../public/images/italian-cover.png";
+import cover4 from "../public/images/tacos-cover.png";
 
 export default {
   title: "PremiumRecipeCard",
@@ -22,38 +22,42 @@ export default {
 
 export const Default = () => ({
   components: { App, PremiumRecipeCard },
-   props: {
+  props: {
     cover: {
       default: select(
-        'images',
+        "images",
         [cover1, cover2, cover3, cover4],
         cover2,
-        'prc-controls'
+        "prc-controls"
       )
     },
     title: {
-      default: text('title', 'Salmon poke bowl with rice, edamame beans, avocado and radishes', 'prc-controls')
+      default: text(
+        "title",
+        "Salmon poke bowl with rice, edamame beans, avocado and radishes",
+        "prc-controls"
+      )
     },
-    isFavorite: {
-      default: boolean('is favorite?', true, 'prc-controls')
+    isLiked: {
+      default: boolean("is favorite?", true, "prc-controls")
     },
     calories: {
-      default: number('calories', 1180, {}, 'prc-controls')
+      default: number("calories", 1180, {}, "prc-controls")
     },
     energyUnits: {
       default: select(
-        'energyUnits',
-        ['calories', 'kilojoules'],
-        'kilojoules',
-        'prc-controls'
+        "energyUnits",
+        ["calories", "kilojoules"],
+        "kilojoules",
+        "prc-controls"
       )
     },
     ratings: {
       default: select(
-        'ratings',
+        "ratings",
         {
           zero: [0],
-          half: [.5],
+          half: [0.5],
           one: [1],
           onehalf: [1.5],
           two: [2],
@@ -66,27 +70,27 @@ export const Default = () => ({
           manyRatings: [...Array(42084)].map(() => 4)
         },
         [...Array(37485)].map(() => 4.5),
-        'prc-controls'
+        "prc-controls"
       )
     },
     duration: {
-      default: number('duration', 18, {}, 'prc-controls')
+      default: number("duration", 18, {}, "prc-controls")
     },
     carbs: {
-      default: number('carbs', 12, {}, 'prc-controls')
+      default: number("carbs", 12, {}, "prc-controls")
     },
     protein: {
-      default: number('protein', 19, {}, 'prc-controls')
+      default: number("protein", 19, {}, "prc-controls")
     },
     fat: {
-      default: number('fat', 8, {}, 'prc-controls')
+      default: number("fat", 8, {}, "prc-controls")
     }
   },
   template: `
     <PremiumRecipeCard
       :cover="cover"
       :title="title"
-      :isFavorite="isFavorite"
+      :isLiked="isLiked"
       :calories="calories"
       :energyUnits="energyUnits"
       :ratings="ratings"
@@ -97,5 +101,5 @@ export const Default = () => ({
       @didClick="action('clicked component')"
     />
   `,
-  methods: { action: action('didClick') }
+  methods: { action: action("didClick") }
 });

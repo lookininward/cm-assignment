@@ -21,59 +21,61 @@
       />
     </template>
     <div class="ratings__total">
-      {{formattedTotalRatings}}
+      {{ formattedTotalRatings }}
     </div>
   </div>
 </template>
 
 <script>
-  import formatNumber from '@/helpers/formatNumber'
-  import getAverageNumber from '@/helpers/getAverageNumber'
+import formatNumber from "@/helpers/formatNumber";
+import getAverageNumber from "@/helpers/getAverageNumber";
 
-  export default {
-    name: 'Ratings',
-    props: {
-      ratings: {
-        type: Array,
-        required: true,
-        validator: prop => {
-          return !prop.map(rating =>
-            rating >=0 && rating <=5 && rating % 0.5 == 0
-          ).some(rating => !rating)
-        }
-      },
-      displayTotalRatings: {
-        type: Boolean,
-        required: false,
-        default: true,
-        validator: prop => typeof prop === 'boolean'
+export default {
+  name: "Ratings",
+  props: {
+    ratings: {
+      type: Array,
+      required: true,
+      validator: prop => {
+        return !prop
+          .map(rating => rating >= 0 && rating <= 5 && rating % 0.5 == 0)
+          .some(rating => !rating);
       }
     },
-    computed: {
-      stars() {
-        const rating = getAverageNumber(this.ratings).toString().split('.')
-        let stars = []
+    displayTotalRatings: {
+      type: Boolean,
+      required: false,
+      default: true,
+      validator: prop => typeof prop === "boolean"
+    }
+  },
+  computed: {
+    stars() {
+      const rating = getAverageNumber(this.ratings)
+        .toString()
+        .split(".");
+      let stars = [];
 
-        for (let i = 0; i < parseInt(rating[0]); i++) {
-          stars.push('f')
-        }
-
-        if (rating[1]) {
-          stars.push('h')
-        }
-
-        while (stars.length < 5) {
-          stars.push('e')
-        }
-
-        return stars
-      },
-      formattedTotalRatings() {
-        const number = formatNumber(this.ratings.length)
-        return `${number} ${this.ratings.length > 1 ? 'ratings' : 'rating'}`
+      for (let i = 0; i < parseInt(rating[0]); i++) {
+        stars.push("f");
       }
+
+      if (rating[1]) {
+        stars.push("h");
+      }
+
+      while (stars.length < 5) {
+        stars.push("e");
+      }
+
+      return stars;
+    },
+    formattedTotalRatings() {
+      const number = formatNumber(this.ratings.length);
+      return `${number} ${this.ratings.length > 1 ? "ratings" : "rating"}`;
     }
   }
+};
 </script>
 
 <style scoped lang="scss">
