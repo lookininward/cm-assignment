@@ -1,7 +1,7 @@
 <template>
   <div class="prc" @click="clickAction">
     <div
-      class="prc__cover"
+      class="prc__coverImg"
       :style="{
         'background-image': `
           linear-gradient(
@@ -109,7 +109,7 @@ export default {
   },
   methods: {
     clickAction() {
-      this.$emit("didClick");
+      this.$emit("didClick", "PremiumRecipeCard");
     }
   }
 };
@@ -129,7 +129,7 @@ export default {
 }
 
 /* section -- cover */
-.prc__cover {
+.prc__coverImg {
   position: absolute;
   width: 100%;
   height: 200px;
@@ -137,7 +137,7 @@ export default {
   transition: opacity 0.3s;
 }
 
-.prc:hover .prc__cover {
+.prc:hover .prc__coverImg {
   opacity: 0.8;
 }
 
@@ -158,17 +158,12 @@ export default {
   font-size: $font-lg;
   line-height: 20px;
   color: #0c0c0a;
+  text-transform: capitalize;
   text-align: left;
   margin-bottom: 16px;
   padding-right: 10px;
-
-  /* handle overflow */
   max-height: 40px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  @include limitLines(2);
 }
 
 /* Modifiers for nested components */

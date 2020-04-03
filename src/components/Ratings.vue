@@ -20,7 +20,7 @@
         src="@/assets/icons/star-empty.svg"
       />
     </template>
-    <div class="ratings__total">
+    <div v-if="displayTotalRatings" class="ratings__total">
       {{ formattedTotalRatings }}
     </div>
   </div>
@@ -82,6 +82,7 @@ export default {
 .ratings {
   display: flex;
   align-items: center;
+  @include fontStandard();
   font-size: $font-md;
   margin-bottom: 8px;
 }

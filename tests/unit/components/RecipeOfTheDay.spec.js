@@ -1,9 +1,9 @@
 import { shallowMount } from "@vue/test-utils";
-import PremiumRecipeCard from "@/components/PremiumRecipeCard.vue";
+import RecipeOfTheDay from "@/components/RecipeOfTheDay.vue";
 
-describe("PremiumRecipeCard.vue", () => {
+describe("RecipeOfTheDay.vue", () => {
   it("component does render", () => {
-    const wrapper = shallowMount(PremiumRecipeCard, {
+    const wrapper = shallowMount(RecipeOfTheDay, {
       propsData: {
         cover: "images/recipe-cover.png",
         title: "delicious chicken dinner",
@@ -15,14 +15,14 @@ describe("PremiumRecipeCard.vue", () => {
         fat: 6
       }
     });
-    expect(wrapper.attributes("class")).toBe("prc");
-    expect(wrapper.find(".prc__coverImg").exists()).toBe(true);
-    expect(wrapper.find(".prc__info").exists()).toBe(true);
-    expect(wrapper.find(".prc__header").exists()).toBe(true);
+    expect(wrapper.attributes("class")).toBe("rotd");
+    expect(wrapper.find(".rotd__coverImg").exists()).toBe(true);
+    expect(wrapper.find(".rotd__info").exists()).toBe(true);
+    expect(wrapper.find(".rotd__header").exists()).toBe(true);
   });
 
   it("emit didClick event when component clicked", () => {
-    const wrapper = shallowMount(PremiumRecipeCard, {
+    const wrapper = shallowMount(RecipeOfTheDay, {
       propsData: {
         cover: "images/recipe-cover.png",
         title: "delicious chicken dinner",
@@ -34,7 +34,7 @@ describe("PremiumRecipeCard.vue", () => {
         fat: 6
       }
     });
-    wrapper.find(".prc").trigger("click");
+    wrapper.find(".rotd").trigger("click");
     expect(wrapper.emitted("didClick")).toHaveLength(1);
   });
 });

@@ -46,6 +46,7 @@ export default {
 .macro {
   display: flex;
   align-items: center;
+  @include fontStandard();
 }
 
 .macro__icon {

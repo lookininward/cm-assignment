@@ -16,7 +16,8 @@ export const Default = () => ({
         {
           trophy: "trophy",
           star: "star-full",
-          clock: "clock"
+          clock: "clock",
+          none: null
         },
         "trophy",
         "badge"

@@ -20,25 +20,39 @@
           :fat="recipe.fat"
           @didClick="goToRecipe"
         />
-      </div>
 
+        <RecipeOfTheDay
+          :cover="recipeOfTheDay.cover"
+          :title="recipeOfTheDay.title"
+          :calories="recipeOfTheDay.calories"
+          :energy-units="energyUnitType"
+          :ratings="recipeOfTheDay.ratings"
+          :duration="recipeOfTheDay.duration"
+          :carbs="recipeOfTheDay.carbs"
+          :protein="recipeOfTheDay.protein"
+          :fat="recipeOfTheDay.fat"
+          @didClick="goToRecipe"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import PremiumRecipeCard from "@/components/PremiumRecipeCard.vue";
+import RecipeOfTheDay from "@/components/RecipeOfTheDay.vue";
 
 export default {
   name: "App",
   components: {
-    PremiumRecipeCard
+    PremiumRecipeCard,
+    RecipeOfTheDay
   },
   data() {
     return {
       recipe: {
-        cover: 'images/recipe-cover.png',
-        title: 'Low Carb Thai Chicken Curry With Coconut Cauliflower Rice',
+        cover: "images/recipe-cover.png",
+        title: "Low Carb Thai Chicken Curry With Coconut Cauliflower Rice",
         isLiked: false,
         calories: 489,
         ratings: [...Array(200)].map(() => 3),
@@ -47,12 +61,22 @@ export default {
         protein: 16,
         fat: 6
       },
-      energyUnitType: 'calories'
-    }
+      recipeOfTheDay: {
+        cover: "images/noodles-cover.png",
+        title: "Keto Italian Beef With Cabbage Noodles",
+        calories: 489,
+        ratings: [...Array(1)].map(() => 5),
+        duration: 30,
+        carbs: 2,
+        protein: 26,
+        fat: 43
+      },
+      energyUnitType: "calories"
+    };
   },
   methods: {
-    goToRecipe() {
-      alert('pass method to PremiumRecipeCard to run when clicked')
+    goToRecipe(component) {
+      alert(`pass method to ${component} to run when clicked`);
     }
   }
 };
@@ -74,7 +98,7 @@ export default {
 }
 </style>
 
-<style scoped>
+<style scoped lang="scss">
 .cm-logo-wrapper {
   margin-bottom: 30px;
 }
@@ -91,6 +115,12 @@ export default {
 
 .premium-recipe-wrapper {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  div:nth-child(1),
+  div:nth-child(2) {
+    margin-bottom: 50px;
+  }
 }
 </style>

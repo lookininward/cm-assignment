@@ -32,7 +32,6 @@ export default {
 
 <style scoped lang="scss">
 .badge {
-  @include fontStandard();
   width: fit-content;
   padding: 0 8px;
   height: 20px;
@@ -41,6 +40,7 @@ export default {
   justify-content: center;
   background: rgba(255, 255, 255, 0.3);
   border-radius: 10px;
+  @include fontStandard();
   font-weight: 600;
   font-size: $font-sm;
   text-transform: capitalize;

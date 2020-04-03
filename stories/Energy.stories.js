@@ -1,4 +1,4 @@
-import { withKnobs, number, select } from "@storybook/addon-knobs";
+import { withKnobs, number, select, boolean } from "@storybook/addon-knobs";
 import Energy from "../src/components/Energy.vue";
 
 export default {
@@ -26,6 +26,9 @@ export const Default = () => ({
     },
     duration: {
       default: number("duration", 10, {}, "energy")
+    },
+    displayIcon: {
+      default: boolean("display icon", true, "energy")
     }
   },
   template: `
@@ -33,6 +36,7 @@ export const Default = () => ({
       :calories="calories"
       :unitType="energyUnits"
       :duration="duration"
+      :displayIcon="displayIcon"
     />
   `
 });

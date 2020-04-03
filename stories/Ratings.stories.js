@@ -31,7 +31,7 @@ export const Default = () => ({
           manyRatings: [...Array(42084)].map(() => 4)
         },
         [...Array(37485)].map(() => 4.5),
-        "ratings-controls"
+        "ratings"
       )
     }
   },

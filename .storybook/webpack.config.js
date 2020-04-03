@@ -1,14 +1,14 @@
-const path = require('path')
-const rootPath = path.resolve(__dirname, '../src')
+const path = require("path");
+const rootPath = path.resolve(__dirname, "../src");
 
 module.exports = ({ config }) => {
   config.module.rules.push({
     test: /\.scss$/,
     use: [
-      'vue-style-loader',
-      'css-loader',
+      "vue-style-loader",
+      "css-loader",
       {
-        loader: 'sass-loader',
+        loader: "sass-loader",
         options: {
           prependData: `
             @import "@/scss/_variables.scss";
@@ -17,8 +17,8 @@ module.exports = ({ config }) => {
         }
       }
     ]
-  })
-  config.resolve.alias['@'] = rootPath
-  config.resolve.alias['~'] = rootPath
-  return config
-}
+  });
+  config.resolve.alias["@"] = rootPath;
+  config.resolve.alias["~"] = rootPath;
+  return config;
+};
