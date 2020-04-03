@@ -41,22 +41,15 @@ export default {
       required: false,
       default: "calories",
       validator: prop => ["calories", "kilojoules"].includes(prop)
-    },
-    duration: {
-      type: Number,
-      required: false,
-      validator: prop => prop >= 0
     }
   },
   computed: {
     formattedEnergy() {
       const calories = formatNumber(Math.round(this.calories));
       const kilojoules = formatNumber(Math.round(this.calories * 4.184));
-      const labelCal = this.duration >= 5000 ? "Cal" : "Calories";
-      const labelKj = this.duration >= 60 ? "Kj" : "Kilojoules";
       return this.unitType === "calories"
-        ? `${calories} ${labelCal}`
-        : `${kilojoules} ${labelKj}`;
+        ? `${calories} Calories`
+        : `${kilojoules} Kilojoules`;
     }
   }
 };

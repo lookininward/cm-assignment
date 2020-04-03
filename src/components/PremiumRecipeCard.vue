@@ -126,9 +126,12 @@ export default {
   overflow: hidden;
   cursor: pointer;
   @include fontStandard();
+
+  &:hover .prc__coverImg {
+    opacity: 0.8;
+  }
 }
 
-/* section -- cover */
 .prc__coverImg {
   position: absolute;
   width: 100%;
@@ -137,11 +140,6 @@ export default {
   transition: opacity 0.3s;
 }
 
-.prc:hover .prc__coverImg {
-  opacity: 0.8;
-}
-
-/* section -- detailed information */
 .prc__info {
   width: 310px;
   height: 94px;
@@ -153,6 +151,10 @@ export default {
 }
 
 .prc__header {
+  max-height: 40px;
+  @include limitLines(2);
+  padding-right: 10px;
+  margin-bottom: 16px;
   display: block;
   font-weight: bold;
   font-size: $font-lg;
@@ -160,26 +162,25 @@ export default {
   color: #0c0c0a;
   text-transform: capitalize;
   text-align: left;
-  margin-bottom: 16px;
-  padding-right: 10px;
-  max-height: 40px;
-  @include limitLines(2);
 }
+</style>
 
-/* Modifiers for nested components */
-.prc .heart {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-}
+<style lang="scss">
+.prc {
+  .heart {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
 
-.prc .badge {
-  position: absolute;
-  bottom: 8px;
-  left: 8px;
-}
+  .badge {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+  }
 
-.prc .duration {
-  margin-right: 16px;
+  .duration {
+    margin-right: 16px;
+  }
 }
 </style>

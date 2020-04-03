@@ -24,9 +24,6 @@ export const Default = () => ({
         "energy"
       )
     },
-    duration: {
-      default: number("duration", 10, {}, "energy")
-    },
     displayIcon: {
       default: boolean("display icon", true, "energy")
     }
@@ -35,7 +32,6 @@ export const Default = () => ({
     <Energy
       :calories="calories"
       :unitType="energyUnits"
-      :duration="duration"
       :displayIcon="displayIcon"
     />
   `

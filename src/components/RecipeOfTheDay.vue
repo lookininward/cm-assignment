@@ -112,6 +112,10 @@ export default {
   overflow: hidden;
   cursor: pointer;
   @include fontStandard();
+
+  &:hover .rotd__coverImg {
+    opacity: 0.8;
+  }
 }
 
 .rotd__coverImg,
@@ -124,6 +128,7 @@ export default {
 .rotd__coverImg {
   background-size: cover;
   z-index: 1;
+  transition: opacity 0.3s;
 }
 
 .rotd__coverImgFilter {
@@ -161,8 +166,9 @@ export default {
 }
 
 .rotd__header {
+  max-height: 60px;
+  @include limitLines(2);
   max-width: 330px;
-  height: 52px;
   display: flex;
   align-items: left;
   font-weight: 600;
@@ -172,22 +178,6 @@ export default {
   color: #ffffff;
   text-transform: capitalize;
   margin-bottom: 3px;
-  max-height: 60px;
-  @include limitLines(2);
-}
-
-.btn.btn--learnMore {
-  position: absolute;
-  width: 73px;
-  height: 16px;
-  font-size: $font-md;
-  font-weight: bold;
-  line-height: 16px;
-  color: #ffffff;
-  padding: 8px 20px;
-  background: rgba(255, 255, 255, 0.4);
-  mix-blend-mode: normal;
-  border-radius: 15px;
 }
 </style>
 

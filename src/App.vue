@@ -96,6 +96,17 @@ export default {
 .flex-justify-between {
   justify-content: space-between;
 }
+
+.btn {
+  padding: 8px 20px;
+  background: rgba(255, 255, 255, 0.4);
+  mix-blend-mode: normal;
+  border-radius: 15px;
+  font-size: $font-md;
+  font-weight: bold;
+  line-height: 16px;
+  color: #ffffff;
+}
 </style>
 
 <style scoped lang="scss">
