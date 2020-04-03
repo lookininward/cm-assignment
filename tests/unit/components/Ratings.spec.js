@@ -72,7 +72,11 @@ describe("Ratings.vue", () => {
       ]
     ];
     test.each(cases)("given %p, returns %p", (ratings, expectedResult) => {
-      const wrapper = shallowMount(Ratings, { propsData: { ratings } });
+      const wrapper = shallowMount(Ratings, {
+        propsData: {
+          ratings
+        }
+      });
       expect(wrapper.vm.stars).toStrictEqual(expectedResult);
     });
   });

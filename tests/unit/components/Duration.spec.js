@@ -3,7 +3,11 @@ import Duration from "@/components/Duration.vue";
 
 describe("Duration.vue", () => {
   it("component does render", () => {
-    const wrapper = shallowMount(Duration, { propsData: { duration: 75 } });
+    const wrapper = shallowMount(Duration, {
+      propsData: {
+        duration: 75
+      }
+    });
     expect(wrapper.attributes("class")).toBe("duration");
     expect(wrapper.find(".duration__icon").exists()).toBe(true);
     expect(wrapper.find(".duration__formatted").exists()).toBe(true);
@@ -30,7 +34,11 @@ describe("Duration.vue", () => {
       [9999.3, "166 hr 39 min"]
     ];
     test.each(cases)("given %p, returns %p", (duration, expectedResult) => {
-      const wrapper = shallowMount(Duration, { propsData: { duration } });
+      const wrapper = shallowMount(Duration, {
+        propsData: {
+          duration
+        }
+      });
       expect(wrapper.vm.formattedDuration).toBe(expectedResult);
     });
   });

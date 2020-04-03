@@ -13,7 +13,11 @@ describe("Heart.vue", () => {
       [false, "heart heart--empty"]
     ];
     test.each(cases)("given %p, returns %p", (isFull, expectedResult) => {
-      const wrapper = shallowMount(Heart, { propsData: { isFull } });
+      const wrapper = shallowMount(Heart, {
+        propsData: {
+          isFull
+        }
+      });
       expect(wrapper.attributes("class")).toBe(expectedResult);
     });
   });

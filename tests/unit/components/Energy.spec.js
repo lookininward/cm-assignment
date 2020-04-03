@@ -3,7 +3,11 @@ import Energy from "@/components/Energy.vue";
 
 describe("Energy.vue", () => {
   it("component does render", () => {
-    const wrapper = shallowMount(Energy, { propsData: { calories: 500 } });
+    const wrapper = shallowMount(Energy, {
+      propsData: {
+        calories: 500
+      }
+    });
     expect(wrapper.attributes("class")).toBe("energy");
     expect(wrapper.find(".energy__icon").exists()).toBe(true);
     expect(wrapper.find(".energy__formatted").exists()).toBe(true);
