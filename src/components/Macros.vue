@@ -1,15 +1,21 @@
 <template>
   <div class="macros">
     <div class="macro macro--carbs">
-      <div class="macro__icon"></div>
+      <svg class="macro__icon" viewBox="0 0 80 80" width="6" height="6">
+        <circle class="circle" cx="40" cy="40" r="38" />
+      </svg>
       <div class="macro__amount">{{ carbs }}g</div>
     </div>
     <div class="macro macro--protein">
-      <div class="macro__icon"></div>
+      <svg class="macro__icon" viewBox="0 0 80 80" width="6" height="6">
+        <circle class="circle" cx="40" cy="40" r="38" />
+      </svg>
       <div class="macro__amount">{{ protein }}g</div>
     </div>
     <div class="macro macro--fat">
-      <div class="macro__icon"></div>
+      <svg class="macro__icon" viewBox="0 0 80 80" width="6" height="6">
+        <circle class="circle" cx="40" cy="40" r="38" />
+      </svg>
       <div class="macro__amount">{{ fat }}g</div>
     </div>
   </div>
@@ -49,28 +55,42 @@ export default {
   @include fontStandard();
 }
 
+.macro {
+  margin-right: 8px;
+
+  &:nth-child(3) {
+    margin-right: 0;
+  }
+}
+
 .macro__icon {
-  width: 6px;
-  height: 6px;
-  border-radius: 3px;
   margin-right: 4px;
+
+  .circle {
+    fill: #f94642;
+    stroke: #f94642;
+    stroke-width: 0.1875em;
+  }
 }
 
-.macro.macro--carbs .macro__icon {
-  background-color: #f94642;
+.macro.macro--carbs .macro__icon .circle {
+  fill: #f94642;
+  stroke: #f94642;
 }
 
-.macro.macro--protein .macro__icon {
-  background-color: #3177bb;
+.macro.macro--protein .macro__icon .circle {
+  fill: #3177bb;
+  stroke: #3177bb;
 }
 
-.macro.macro--fat .macro__icon {
-  background-color: #fda120;
+.macro.macro--fat .macro__icon .circle {
+  fill: #fda120;
+  stroke: #fda120;
 }
 
 .macro__amount {
-  margin-right: 8px;
   font-size: $font-sm;
+  font-weight: 500;
   color: #6f737a;
 }
 </style>

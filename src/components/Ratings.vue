@@ -84,7 +84,6 @@ export default {
   align-items: center;
   @include fontStandard();
   font-size: $font-md;
-  margin-bottom: 8px;
 }
 
 .ratings__star {

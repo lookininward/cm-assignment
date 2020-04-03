@@ -133,7 +133,7 @@ export default {
 }
 
 .prc__coverImg {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 200px;
   background-size: cover;
@@ -141,21 +141,18 @@ export default {
 }
 
 .prc__info {
-  width: 310px;
-  height: 94px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  height: 118px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 16px;
   background-color: #ffffff;
-  padding: 8px 16px 16px 16px;
 }
 
 .prc__header {
   max-height: 40px;
   @include limitLines(2);
-  padding-right: 10px;
-  margin-bottom: 16px;
-  display: block;
+  margin-bottom: 12px;
   font-weight: bold;
   font-size: $font-lg;
   line-height: 20px;
@@ -177,6 +174,10 @@ export default {
     position: absolute;
     bottom: 8px;
     left: 8px;
+  }
+
+  .ratings {
+    margin-bottom: 5px;
   }
 
   .duration {
